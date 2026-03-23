@@ -1,0 +1,70 @@
+/* Scrollbar Styling: Adjusts color based on light/dark mode */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Panel: The frosted glass effect for cards and headers */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Seller Card: The hover effect for the list of other sellers */
+.seller-card { transition: all 0.2s ease; }
+.seller-card:hover { transform: translateY(-2px); }
+
+.dark .seller-card:hover {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: rgba(163, 141, 109, 0.3);
+}
+html:not(.dark) .seller-card:hover {
+    background: #f0fdf4;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Tag Badge: Styling for the category labels under the big icon */
+.tag-badge { border: 1px solid rgba(255, 255, 255, 0.1); }
+.dark .tag-badge { background: rgba(255, 255, 255, 0.05); }
+html:not(.dark) .tag-badge { 
+    background: rgba(0, 0, 0, 0.05); 
+    border-color: rgba(0, 0, 0, 0.1); 
+    color: #374151;
+}
+
+/* Featured Border: Creates the gradient border around the Recommended Deal */
+.featured-border {
+    position: relative;
+    border-radius: 16px;
+}
+.dark .featured-border { background: linear-gradient(135deg, #1c1c1c 0%, #1a1a1a 100%); }
+html:not(.dark) .featured-border { background: white; border: 1px solid #e5e7eb; }
+
+.featured-border::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 16px; padding: 2px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+}
+
+/* Sets the gradient color of the border based on the theme */
+.dark .featured-border::before { background: linear-gradient(135deg, #a38d6d, transparent); }
+html:not(.dark) .featured-border::before { background: linear-gradient(135deg, #10b981, transparent); }
+
+/* Fade-in Animation: Smoothly loads the content into view */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

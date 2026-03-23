@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - FarmConnect</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#c9a962', 500: '#a38d6d', 600: '#8a7557' },
+                        dark: { 900: '#0a0a0a', 800: '#141414', 700: '#1a1a1a', 600: '#252525', 500: '#333' },
+                        agri: { 500: '#10b981', 600: '#059669' }, 
+                        success: '#4ecca3',
+                        danger: '#e85d75'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="product.css">
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-200 font-sans min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-gray-200 dark:border-dark-500 bg-white/90 dark:bg-dark-900/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
+            
+            <a id="backLink" href="index.html" class="flex items-center gap-2 transition-colors text-gray-600 hover:text-agri-600 dark:text-gray-400 dark:hover:text-white">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span id="backText" class="text-sm font-medium">Back to Market</span>
+            </a>
+            
+            <h1 class="font-bold text-lg tracking-tight text-agri-600 dark:text-gold-400">FARMCONNECT</h1>
+            
+            <button onclick="toggleTheme()" class="p-2 rounded-lg transition-colors text-gray-600 hover:bg-gray-100 hover:text-agri-600 dark:text-gray-400 dark:hover:bg-dark-700 dark:hover:text-gold-400">
+                <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto">
+        <div id="productContent" class="max-w-7xl mx-auto p-4 md:p-8 animate-fade-in min-h-[60vh]">
+            <div class="flex items-center justify-center h-full">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-agri-500 dark:border-gold-400"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>

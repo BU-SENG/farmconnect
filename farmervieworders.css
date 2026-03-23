@@ -1,0 +1,86 @@
+/* Custom Scrollbar - Changes colors based on Light/Dark mode */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Panels - Creates the translucent background for cards and headers */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Nav Item Indicator (The little vertical colored line) */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+
+/* Uses Gold for dark mode, Green for light mode */
+.dark .nav-item::before { background: #a38d6d; }
+html:not(.dark) .nav-item::before { background: #059669; }
+
+/* Triggers the indicator on hover or if it has the "active" class */
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Fade in Animation for loading the main page content */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Delivery Animation - Road Track Line */
+.track-line {
+    background-position: bottom;
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
+}
+
+/* Delivery Animation - Moving Truck keyframes */
+.moving-truck {
+    animation: drive 3s ease-in-out infinite alternate;
+}
+@keyframes drive {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+}
+
+/* Status Badges for the Order History Table */
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+/* Transit Badge (Yellow) */
+.status-badge.transit { background: rgba(234, 179, 8, 0.1); color: #facc15; border-color: rgba(234, 179, 8, 0.2); }
+/* Delivered/Paid Badge (Green) */
+.status-badge.delivered { background: rgba(78, 204, 163, 0.1); color: #4ecca3; border-color: rgba(78, 204, 163, 0.2); }
+/* Cancelled Badge (Red) */
+.status-badge.cancelled { background: rgba(232, 93, 117, 0.1); color: #e85d75; border-color: rgba(232, 93, 117, 0.2); }

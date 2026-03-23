@@ -1,0 +1,69 @@
+/* Custom Scrollbar Handling for Light/Dark themes */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Panels - Translucent background for main cards and headers */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Input Fields styling for both themes */
+.input-field {
+    transition: all 0.3s;
+    outline: none;
+}
+.dark .input-field {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.dark .input-field:focus {
+    border-color: #a38d6d;
+    box-shadow: 0 0 0 3px rgba(163, 141, 109, 0.1);
+}
+html:not(.dark) .input-field {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}
+html:not(.dark) .input-field:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Custom Radio Card - Colors the card border and background when the hidden radio button is checked */
+.radio-card input[type="radio"]:checked + div {
+    border-color: #10b981;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+.dark .radio-card input[type="radio"]:checked + div {
+    border-color: #a38d6d;
+    background-color: rgba(163, 141, 109, 0.05);
+}
+
+/* Fade in Animation for page load */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Progress Bar Animation for Success Modal */
+@keyframes progress { 
+    0% { width: 0%; } 
+    100% { width: 100%; } 
+}

@@ -1,0 +1,79 @@
+/* Custom Scrollbar Handling for Panels */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Translucent Glass Panels */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Animations */
+.animate-fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Route SVG Animation */
+.route-animate {
+    animation: dash 20s linear infinite;
+}
+@keyframes dash {
+    to { stroke-dashoffset: -100; }
+}
+
+/* Stylized Map Background Pattern 
+  Creates a grid-like map feel without needing a real map API 
+*/
+.map-pattern {
+    background-image: 
+        radial-gradient(circle at center, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    background-position: center, center, center;
+}
+
+.dark .map-pattern {
+    background-image: 
+        radial-gradient(circle at center, rgba(163, 141, 109, 0.1) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+}
+
+/* Job Card Hover Effects */
+.job-card {
+    transition: all 0.2s ease;
+}
+.job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.dark .job-card:hover {
+    border-color: rgba(163, 141, 109, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+html:not(.dark) .job-card:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Disabled State for Jobs heavier than capacity */
+.job-locked {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(100%);
+}

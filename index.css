@@ -1,0 +1,82 @@
+/* Custom Scrollbar - Changes colors based on Light/Dark mode */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Effects - Creates the translucent sticky header effect */
+.glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-effect {
+    background: rgba(26, 26, 26, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Card Hover - Makes the product cards pop up slightly when hovered */
+.card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-hover:hover { transform: translateY(-4px); }
+.dark .card-hover:hover { box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5); }
+html:not(.dark) .card-hover:hover { box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1); }
+
+/* Nav Item Indicator - The colored line that appears next to active sidebar links */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+.dark .nav-item::before { background: #a38d6d; } /* Gold in dark mode */
+html:not(.dark) .nav-item::before { background: #059669; } /* Green in light mode */
+
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Active Filter Pill - Handles the styling of the currently selected category button */
+.filter-pill { transition: all 0.2s ease; }
+.dark .filter-pill.active {
+    background: linear-gradient(135deg, #a38d6d 0%, #8a7557 100%);
+    color: #0a0a0a;
+}
+html:not(.dark) .filter-pill.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+/* Price Tags and Offer Tags */
+.price-tag { background: linear-gradient(135deg, rgba(78, 204, 163, 0.15) 0%, rgba(78, 204, 163, 0.05) 100%); }
+.offer-tag { background: linear-gradient(135deg, rgba(232, 93, 117, 0.15) 0%, rgba(232, 93, 117, 0.05) 100%); }
+
+.trend-up { color: #4ecca3; }
+.trend-down { color: #e85d75; }
+
+/* Search Bar Focus States */
+.search-focus:focus { outline: none; }
+.dark .search-focus:focus { box-shadow: 0 0 0 3px rgba(163, 141, 109, 0.2); }
+html:not(.dark) .search-focus:focus { box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+
+/* Fade Animations - Allows elements to slide up smoothly when page loads */
+.animate-fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Stagger Animations - Adds a delay to multiple items so they appear one after another */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }

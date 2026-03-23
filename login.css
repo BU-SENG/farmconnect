@@ -1,0 +1,66 @@
+/* Background Styling: Handles the radial gradient effect on the body */
+body.radial-bg {
+    background-image: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f3f4f6 70%); /* Light mode background */
+}
+.dark body.radial-bg {
+    background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0a0a0a 70%); /* Dark mode background */
+}
+
+/* Glass Panel: The main translucent container holding the form */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+}
+.dark .glass-panel {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Input Fields: Styles text inputs and passwords */
+.input-field {
+    transition: all 0.2s ease;
+    outline: none;
+}
+.dark .input-field {
+    background: #141414; /* dark-800 */
+    border: 1px solid #252525; /* dark-600 */
+    color: #fff;
+}
+.dark .input-field::placeholder { color: #525252; }
+.dark .input-field:focus {
+    border-color: #a38d6d;
+    box-shadow: 0 0 0 4px rgba(163, 141, 109, 0.1);
+}
+
+html:not(.dark) .input-field {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}
+html:not(.dark) .input-field::placeholder { color: #9ca3af; }
+html:not(.dark) .input-field:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Slide Up Animation: Makes the form slide in smoothly on page load */
+.animate-up {
+    animation: slideUp 0.5s ease-out forwards;
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Shake Animation: Triggers when the user inputs incorrect login details */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}

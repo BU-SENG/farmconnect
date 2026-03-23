@@ -1,0 +1,88 @@
+/* Custom Scrollbar Handling for Light/Dark themes */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Effects for the sticky header */
+.glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-effect {
+    background: rgba(26, 26, 26, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Nav Item Indicator (The little vertical colored line) */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+/* Uses Gold for dark mode, Green for light mode */
+.dark .nav-item::before { background: #a38d6d; }
+html:not(.dark) .nav-item::before { background: #059669; }
+
+/* Triggers the indicator on hover or if it has the "active" class */
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Top Navigation Filter Pills Active State Backgrounds */
+.filter-pill { transition: all 0.2s ease; }
+.dark .filter-pill.active {
+    background: linear-gradient(135deg, #a38d6d 0%, #8a7557 100%);
+    color: #0a0a0a;
+}
+html:not(.dark) .filter-pill.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+/* Search Bar Glow Effect */
+.search-focus:focus { outline: none; }
+.dark .search-focus:focus { box-shadow: 0 0 0 3px rgba(163, 141, 109, 0.2); }
+html:not(.dark) .search-focus:focus { box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+
+/* Table Row Hover Transitions */
+.table-row { transition: all 0.2s ease; }
+.dark .table-row:hover { background: rgba(163, 141, 109, 0.05); }
+html:not(.dark) .table-row:hover { background: #f0fdf4; } /* Subtle light green hover */
+/* Move the row slightly to the right on hover */
+.table-row:hover { transform: translateX(4px); }
+
+/* Sparkline Chart Drawing Animation */
+.sparkline {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw 1s ease forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* Fade in for table rows when they are generated */
+.animate-fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Stagger Delays to make table rows appear one by one */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }

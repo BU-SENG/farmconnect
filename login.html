@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect - Login</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#c9a962', 500: '#a38d6d', 600: '#8a7557' },
+                        dark: { 900: '#0a0a0a', 800: '#141414', 700: '#1a1a1a', 600: '#252525', 500: '#333' },
+                        agri: { 500: '#10b981', 600: '#059669' }, /* Green for Light Mode */
+                        danger: '#e85d75'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300 bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-200 radial-bg">
+
+    <div class="absolute top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg transition-colors glass-panel text-gray-600 hover:text-agri-600 dark:text-gray-400 dark:hover:text-gold-400" title="Toggle Theme">
+            <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+            <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+        </button>
+    </div>
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-50 bg-agri-500/20 dark:bg-gold-500/10"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full blur-3xl opacity-50 bg-agri-500/10 dark:bg-gold-500/5"></div>
+    </div>
+
+    <div class="w-full max-w-md animate-up relative z-10">
+        
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 shadow-lg
+                bg-gradient-to-br from-agri-500 to-agri-600 text-white shadow-agri-500/20
+                dark:from-gold-400 dark:to-gold-600 dark:text-dark-900 dark:shadow-gold-500/20">
+                <i data-lucide="wheat" class="w-8 h-8"></i>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome Back</h1>
+            <p class="text-sm mt-2 text-gray-500 dark:text-gray-400">Access the Agricultural Marketplace</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-8">
+            <form id="loginForm" class="space-y-5">
+                
+                <div class="space-y-1.5">
+                    <label class="text-xs font-medium ml-1 text-gray-500 dark:text-gray-400">Username</label>
+                    <div class="relative group">
+                        <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-gray-400 group-focus-within:text-agri-500 dark:text-gray-500 dark:group-focus-within:text-gold-400"></i>
+                        <input type="text" id="username" required class="input-field w-full rounded-xl py-3.5 pl-12 pr-4 text-sm" placeholder="Enter your username">
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-xs font-medium ml-1 text-gray-500 dark:text-gray-400">Password</label>
+                    <div class="relative group">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-gray-400 group-focus-within:text-agri-500 dark:text-gray-500 dark:group-focus-within:text-gold-400"></i>
+                        <input type="password" id="password" required class="input-field w-full rounded-xl py-3.5 pl-12 pr-4 text-sm" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="w-4 h-4 rounded transition-colors
+                            border-gray-300 text-agri-500 focus:ring-agri-500/20
+                            dark:border-dark-500 dark:bg-dark-800 dark:text-gold-500 dark:focus:ring-gold-500/20">
+                        <span class="transition-colors text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300">Remember me</span>
+                    </label>
+                    <a href="#" class="font-medium transition-colors text-agri-600 hover:text-agri-700 dark:text-gold-400 dark:hover:text-gold-300">Forgot Password?</a>
+                </div>
+
+                <div id="errorMsg" class="hidden p-3 rounded-xl bg-danger/10 border border-danger/20 text-danger text-sm flex items-center gap-2 animate-pulse">
+                    <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                    <span>Invalid credentials. Try <b>'buyer'</b> or <b>'farmer'</b>.</span>
+                </div>
+
+                <button type="submit" class="w-full font-bold py-3.5 rounded-xl transform hover:-translate-y-0.5 transition-all shadow-lg
+                    bg-gradient-to-r from-agri-500 to-agri-600 text-white shadow-agri-500/20 hover:from-agri-400 hover:to-agri-500
+                    dark:from-gold-500 dark:to-gold-600 dark:text-dark-900 dark:shadow-gold-500/20 dark:hover:from-gold-400 dark:hover:to-gold-500">
+                    Log In
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t text-center border-gray-200 dark:border-white/5">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Don't have an account? 
+                    <a href="signup.html" class="font-medium transition-colors text-agri-600 hover:text-agri-700 dark:text-gold-400 dark:hover:text-gold-300">Create Account</a>
+                </p>
+            </div>
+        </div>
+
+        <a href="index.html" class="flex items-center justify-center gap-2 mt-8 transition-colors text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back to Market
+        </a>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

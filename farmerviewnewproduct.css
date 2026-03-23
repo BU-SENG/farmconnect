@@ -1,0 +1,63 @@
+/* Custom Scrollbar Handling for Light/Dark themes */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Translucent Glass Panels for Cards */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Navigation Indicator */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+.dark .nav-item::before { background: #a38d6d; } /* Gold in Dark */
+html:not(.dark) .nav-item::before { background: #059669; } /* Green in Light */
+
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Base Fade In Animation */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Input Fields */
+.input-field {
+    transition: all 0.3s;
+    outline: none;
+}
+.dark .input-field:focus {
+    border-color: #a38d6d;
+    box-shadow: 0 0 0 3px rgba(163, 141, 109, 0.1);
+}
+html:not(.dark) .input-field:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}

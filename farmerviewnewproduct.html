@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List New Product - FarmConnect</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#c9a962', 500: '#a38d6d', 600: '#8a7557' },
+                        dark: { 900: '#0a0a0a', 800: '#141414', 700: '#1a1a1a', 600: '#252525', 500: '#333' },
+                        agri: { 500: '#10b981', 600: '#059669' }, /* Green for Light Mode */
+                        success: '#4ecca3',
+                        danger: '#e85d75'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="farmerviewnewproduct.css">
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-200 font-sans min-h-screen transition-colors duration-300">
+
+    <div class="lg:hidden fixed top-0 left-0 right-0 z-50 glass-panel border-b border-gray-200 dark:border-dark-500 p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <button id="mobileMenuBtn" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <span class="font-bold text-lg tracking-tight text-agri-600 dark:text-gold-400">FARMCONNECT</span>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-white/95 dark:bg-dark-900/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="p-6 pt-20">
+            <nav class="space-y-2">
+                <a href="farmersview.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="farmersviewmarket.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="font-medium">Market Tracker</span>
+                </a>
+                <a href="farmervieworders.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span class="font-medium">Orders</span>
+                </a>
+                <a href="farmerviewprofile.html" class="flex items-center gap-4 px-4 py-3 rounded-xl bg-agri-50 text-agri-600 dark:bg-gold-500/10 dark:text-gold-400">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span class="font-medium">Farm Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="flex min-h-screen pt-14 lg:pt-0">
+        
+        <aside class="hidden lg:flex w-20 flex-col items-center py-6 fixed h-full z-30 bg-white border-r border-gray-200 dark:bg-dark-800 dark:border-dark-500 transition-colors duration-300">
+            <div class="mb-8">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-agri-500 to-agri-600 dark:from-gold-400 dark:to-gold-600 text-white dark:text-dark-900">
+                    <i data-lucide="wheat" class="w-5 h-5"></i>
+                </div>
+            </div>
+            
+            <nav class="flex-1 flex flex-col gap-2 w-full px-3">
+                <a href="farmersview.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="Dashboard">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                </a>
+                <a href="farmersviewmarket.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="Market Tracker">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </a>
+                <a href="farmervieworders.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="Orders">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                </a>
+                <a href="farmerviewprofile.html" class="nav-item active flex items-center justify-center w-12 h-12 rounded-xl mx-auto bg-agri-50 text-agri-600 dark:bg-gold-500/10 dark:text-gold-400" title="Farm Profile">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                </a>
+            </nav>
+
+            <div class="mt-auto flex flex-col gap-3 items-center w-full">
+                <button onclick="toggleTheme()" class="w-12 h-12 rounded-xl flex items-center justify-center transition-all text-gray-500 hover:bg-gray-100 hover:text-agri-600 dark:text-gray-400 dark:hover:bg-dark-700 dark:hover:text-gold-400" title="Toggle Theme">
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+                <button onclick="logout()" class="w-12 h-12 rounded-xl transition-all flex items-center justify-center text-danger hover:bg-red-50 dark:text-gray-500 dark:hover:text-danger dark:hover:bg-danger/10" title="Logout">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 lg:ml-20 overflow-y-auto bg-gray-50 dark:bg-dark-900 relative">
+            <div class="max-w-5xl mx-auto p-4 md:p-8 animate-fade-in">
+                
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <a href="farmerviewprofile.html" class="flex items-center gap-2 mb-2 text-sm transition-colors text-gray-500 hover:text-agri-600 dark:text-gray-400 dark:hover:text-gold-400">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Profile
+                        </a>
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">List New Product</h1>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Add a new crop or product to the marketplace</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2 space-y-6">
+                        <form id="newProductForm" class="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
+                            
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">Select Crop/Product Base</label>
+                                <div class="relative group">
+                                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 transition-colors text-gray-400 group-focus-within:text-agri-500 dark:text-gray-500 dark:group-focus-within:text-gold-400"></i>
+                                    <select id="productSelector" required class="input-field w-full rounded-xl py-3 pl-10 pr-10 text-sm appearance-none cursor-pointer text-gray-900 dark:text-white bg-white dark:bg-dark-800 border-gray-200 dark:border-dark-600">
+                                        <option value="" disabled selected>Choose a product from the database...</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500 pointer-events-none"></i>
+                                </div>
+                                <p class="text-[10px] text-gray-400 ml-1">Choosing a base automatically fills standard market details.</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">Your Selling Price (₦)</label>
+                                    <input type="number" id="listingPrice" required placeholder="e.g. 5000" class="input-field w-full rounded-xl py-3 px-4 text-sm bg-white dark:bg-dark-800 border-gray-200 dark:border-dark-600 text-gray-900 dark:text-white">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">Stock Level / Quantity</label>
+                                    <input type="text" id="listingStock" required placeholder="e.g. High, 50 Bags" class="input-field w-full rounded-xl py-3 px-4 text-sm bg-white dark:bg-dark-800 border-gray-200 dark:border-dark-600 text-gray-900 dark:text-white">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">Measurement Unit</label>
+                                <input type="text" id="listingUnit" required placeholder="e.g. 50kg Bag, Basket, Per Tuber" class="input-field w-full rounded-xl py-3 px-4 text-sm bg-white dark:bg-dark-800 border-gray-200 dark:border-dark-600 text-gray-900 dark:text-white">
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">Farm Details & Quality Description</label>
+                                <textarea id="listingDesc" rows="3" required placeholder="Describe the freshness, quality, or farm practices..." class="input-field w-full rounded-xl py-3 px-4 text-sm bg-white dark:bg-dark-800 border-gray-200 dark:border-dark-600 text-gray-900 dark:text-white resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full font-bold py-3.5 rounded-xl transform hover:-translate-y-0.5 transition-all shadow-lg mt-4 flex items-center justify-center gap-2
+                                bg-gradient-to-r from-agri-500 to-agri-600 text-white shadow-agri-500/20 hover:from-agri-400 hover:to-agri-500
+                                dark:from-gold-500 dark:to-gold-600 dark:text-dark-900 dark:shadow-gold-500/20 dark:hover:from-gold-400 dark:hover:to-gold-500">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i> Publish Listing
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="lg:col-span-1">
+                        <div class="sticky top-24">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Live Card Preview</h3>
+                            
+                            <div id="previewCard" class="glass-panel rounded-2xl p-5 border border-gray-200 dark:border-dark-500 transition-all opacity-50">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div id="previewIcon" class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 bg-gray-100 dark:bg-dark-600">
+                                        📦
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 id="previewName" class="font-semibold truncate text-gray-900 dark:text-gray-200">Select a product</h3>
+                                        <p id="previewUnit" class="text-sm text-gray-500">--</p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <span id="previewCategory" class="text-xs px-2 py-0.5 rounded-full capitalize bg-gray-100 text-gray-500 dark:bg-dark-600 dark:text-gray-400">category</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-4">
+                                    <div class="price-tag rounded-xl p-3 border border-success/20 bg-success/5">
+                                        <p class="text-xs text-gray-500 mb-1">Buy Now</p>
+                                        <p id="previewPrice" class="text-success font-bold text-lg">₦0</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-dark-500">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <i data-lucide="package" class="w-4 h-4 text-gray-400 dark:text-gray-500"></i>
+                                        <span id="previewStock" class="text-gray-500 dark:text-gray-400">-- in stock</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="successModal" class="fixed inset-0 z-50 bg-gray-900/80 dark:bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-dark-800 rounded-2xl p-8 max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+            <div class="w-20 h-20 mx-auto bg-success/20 rounded-full flex items-center justify-center mb-6">
+                <i data-lucide="check-circle" class="w-10 h-10 text-success"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Listing Published!</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-8 text-sm">Your product is now live on the marketplace. Redirecting...</p>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="farmerviewnewproduct.js"></script>
+</body>
+</html>

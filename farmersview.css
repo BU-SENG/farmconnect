@@ -1,0 +1,92 @@
+/* Scrollbar Styling for Light and Dark Modes */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Translucent Glass Panels for Cards */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Navigation Indicator */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+.dark .nav-item::before { background: #a38d6d; } /* Gold in Dark */
+html:not(.dark) .nav-item::before { background: #059669; } /* Green in Light */
+
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Base Fade In Animation */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Status Badges for the Orders Table */
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+.status-badge.transit { background: rgba(234, 179, 8, 0.1); color: #facc15; border-color: rgba(234, 179, 8, 0.2); }
+.status-badge.delivered { background: rgba(78, 204, 163, 0.1); color: #4ecca3; border-color: rgba(78, 204, 163, 0.2); }
+.status-badge.cancelled { background: rgba(232, 93, 117, 0.1); color: #e85d75; border-color: rgba(232, 93, 117, 0.2); }
+
+/* SVG Line Chart Animation */
+.path-animate {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawPath 2s ease-out forwards;
+}
+@keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+}
+
+/* SVG Donut Chart Animation */
+.circle-animate {
+    transition: stroke-dasharray 1s ease-out, stroke-dashoffset 1s ease-out;
+    animation: rotateIn 1.5s ease-out forwards;
+    transform-origin: center;
+}
+@keyframes rotateIn {
+    from { transform: rotate(-90deg) scale(0.8); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+/* Delivery Progress Bar Animation */
+.bar-animate {
+    animation: growBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: left;
+}
+@keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}

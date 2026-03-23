@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect - My Orders</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#c9a962', 500: '#a38d6d', 600: '#8a7557' },
+                        dark: { 900: '#0a0a0a', 800: '#141414', 700: '#1a1a1a', 600: '#252525', 500: '#333' },
+                        agri: { 500: '#10b981', 600: '#059669' }, /* Green for Light Mode */
+                        success: '#4ecca3',
+                        danger: '#e85d75'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="orders.css">
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-200 font-sans min-h-screen transition-colors duration-300">
+
+    <div class="lg:hidden fixed top-0 left-0 right-0 z-50 glass-panel border-b border-gray-200 dark:border-dark-500 p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <button id="mobileMenuBtn" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <span class="font-bold text-lg tracking-tight text-agri-600 dark:text-gold-400">FARMCONNECT</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="window.location.href='profile.html'" class="p-2 rounded-lg transition-colors hover:bg-gray-200 dark:hover:bg-dark-600">
+                <i data-lucide="user" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-white/95 dark:bg-dark-900/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="p-6 pt-20">
+            <nav class="space-y-2">
+                <a href="index.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="market.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="font-medium">Market Tracker</span>
+                </a>
+                <a href="orders.html" class="flex items-center gap-4 px-4 py-3 rounded-xl bg-agri-50 text-agri-600 dark:bg-gold-500/10 dark:text-gold-400">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span class="font-medium">Orders</span>
+                </a>
+                <a href="profile.html" class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-600 dark:hover:bg-dark-700 dark:text-gray-400 transition-colors">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span class="font-medium">My Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="flex min-h-screen pt-14 lg:pt-0">
+        
+        <aside class="hidden lg:flex w-20 flex-col items-center py-6 fixed h-full z-30 bg-white border-r border-gray-200 dark:bg-dark-800 dark:border-dark-500 transition-colors duration-300">
+            
+            <div class="mb-8">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-agri-500 to-agri-600 dark:from-gold-400 dark:to-gold-600 text-white dark:text-dark-900">
+                    <i data-lucide="wheat" class="w-5 h-5"></i>
+                </div>
+            </div>
+            
+            <nav class="flex-1 flex flex-col gap-2 w-full px-3">
+                <a href="index.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="Home">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                </a>
+                <a href="market.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="Market Tracker">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </a>
+                <a href="orders.html" class="nav-item active flex items-center justify-center w-12 h-12 rounded-xl mx-auto bg-agri-50 text-agri-600 dark:bg-gold-500/10 dark:text-gold-400" title="Orders">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                </a>
+                <a href="profile.html" class="nav-item flex items-center justify-center w-12 h-12 rounded-xl mx-auto transition-all text-gray-500 hover:text-agri-600 hover:bg-gray-100 dark:text-gray-500 dark:hover:text-gold-400 dark:hover:bg-dark-700" title="My Profile">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                </a>
+            </nav>
+
+            <div class="mt-auto flex flex-col gap-3 items-center w-full">
+                <button onclick="toggleTheme()" class="w-12 h-12 rounded-xl flex items-center justify-center transition-all text-gray-500 hover:bg-gray-100 hover:text-agri-600 dark:text-gray-400 dark:hover:bg-dark-700 dark:hover:text-gold-400" title="Toggle Theme">
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+
+                <button onclick="logout()" class="w-12 h-12 rounded-xl transition-all flex items-center justify-center text-danger hover:bg-red-50 dark:text-gray-500 dark:hover:text-danger dark:hover:bg-danger/10" title="Logout">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 lg:ml-20 overflow-y-auto bg-gray-50 dark:bg-dark-900 relative">
+            <div class="max-w-6xl mx-auto p-4 md:p-8 animate-fade-in">
+                
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">My Orders</h1>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Track active shipments and review past purchases.</p>
+                    </div>
+                    <div class="hidden md:flex gap-3">
+                        <button class="px-4 py-2 rounded-lg text-sm transition-colors border bg-white text-gray-700 border-gray-200 hover:border-agri-500 dark:bg-dark-700 dark:text-white dark:border-white/10 dark:hover:border-gold-500">
+                            Support
+                        </button>
+                        <button class="px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-agri-500 text-white hover:bg-agri-600 dark:bg-gold-500 dark:text-black dark:hover:bg-gold-400" onclick="window.location.href='index.html'">
+                            Browse Market
+                        </button>
+                    </div>
+                </div>
+
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                    <i data-lucide="truck" class="w-5 h-5 text-agri-500 dark:text-gold-400"></i>
+                    Active Deliveries (2)
+                </h2>
+
+                <div class="grid grid-cols-1 gap-6 mb-12">
+                    
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group border border-agri-200 dark:border-gold-500/20">
+                        <div class="absolute top-0 right-0 text-xs font-bold px-3 py-1 rounded-bl-xl border-l border-b bg-agri-100 text-agri-700 border-agri-200 dark:bg-gold-500/20 dark:text-gold-400 dark:border-gold-500/20">
+                            ARRIVING TODAY
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex items-start gap-4 md:w-1/3">
+                                <div class="w-16 h-16 rounded-xl flex items-center justify-center text-3xl border bg-gray-100 border-gray-200 dark:bg-dark-700 dark:border-white/5">
+                                    🍚
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">50kg Premium Rice</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Seller: <span class="text-gray-700 dark:text-gray-300">Farmer John</span></p>
+                                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Order #FC-29301</p>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 flex flex-col justify-center px-2">
+                                <div class="relative w-full h-12 flex items-center">
+                                    <div class="absolute w-full h-0.5 rounded-full bg-gray-200 dark:bg-dark-600"></div>
+                                    <div class="absolute h-0.5 rounded-full shadow-lg bg-agri-500 shadow-agri-500/50 dark:bg-gold-500 dark:shadow-[0_0_10px_rgba(163,141,109,0.5)]" style="width: 75%;"></div>
+                                    <div class="absolute left-0 w-3 h-3 rounded-full border-2 z-10 bg-agri-500 border-white dark:bg-gold-500 dark:border-dark-900"></div>
+                                    <div class="absolute right-0 w-3 h-3 rounded-full border-2 z-10 bg-gray-300 border-white dark:bg-dark-600 dark:border-dark-900"></div>
+                                    
+                                    <div class="absolute top-1/2 -translate-y-1/2 moving-truck" style="left: 75%; margin-left: -12px;">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg bg-agri-500 text-white dark:bg-gold-500 dark:text-black">
+                                            <i data-lucide="truck" class="w-4 h-4 fill-current"></i>
+                                        </div>
+                                        <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-bold whitespace-nowrap px-2 py-0.5 rounded border bg-white text-agri-600 border-agri-200 dark:bg-dark-800 dark:text-gold-400 dark:border-gold-500/30">
+                                            Lekki Toll Gate
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mt-2 font-medium">
+                                    <span>Ogun State (Dispatched)</span>
+                                    <span class="text-agri-600 dark:text-white">In Transit</span>
+                                    <span>Lagos (Destination)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-6 border border-gray-200 dark:border-white/5">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex items-start gap-4 md:w-1/3">
+                                <div class="w-16 h-16 rounded-xl flex items-center justify-center text-3xl border bg-gray-100 border-gray-200 dark:bg-dark-700 dark:border-white/5">
+                                    🍅
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">10 Baskets Tomatoes</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Seller: <span class="text-gray-700 dark:text-gray-300">Ogun Co-op</span></p>
+                                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Order #FC-29344</p>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 flex flex-col justify-center px-2 opacity-50">
+                                <div class="relative w-full h-12 flex items-center">
+                                    <div class="absolute w-full h-0.5 bg-gray-200 dark:bg-dark-600 rounded-full"></div>
+                                    <div class="absolute h-0.5 bg-gray-400 dark:bg-gray-500 rounded-full" style="width: 10%;"></div>
+                                    <div class="absolute left-0 w-3 h-3 rounded-full bg-gray-400 border-2 border-white dark:bg-gray-500 dark:border-dark-900 z-10"></div>
+                                    <div class="absolute right-0 w-3 h-3 rounded-full bg-gray-300 border-2 border-white dark:bg-dark-600 dark:border-dark-900 z-10"></div>
+                                    <div class="absolute top-1/2 -translate-y-1/2" style="left: 10%; margin-left: -12px;">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center border bg-gray-100 border-gray-300 dark:bg-dark-600 dark:border-gray-500">
+                                            <i data-lucide="package" class="w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                    <span class="text-gray-600 dark:text-gray-300">Processing Order...</span>
+                                    <span>Expected: Feb 18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                    <i data-lucide="history" class="w-5 h-5 text-gray-500 dark:text-gray-400"></i>
+                    History
+                </h2>
+
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50 dark:bg-dark-800 text-xs uppercase text-gray-500 font-medium">
+                                <tr>
+                                    <th class="px-6 py-4">Order ID</th>
+                                    <th class="px-6 py-4">Items</th>
+                                    <th class="px-6 py-4">Date</th>
+                                    <th class="px-6 py-4">Amount</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-white/5 text-sm">
+                                <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">#FC-10023</td>
+                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">25L Palm Oil (Red)</td>
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">Jan 28, 2026</td>
+                                    <td class="px-6 py-4 text-gray-900 dark:text-white">₦35,000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="status-badge delivered">Delivered</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-agri-600 hover:text-agri-700 dark:text-gold-400 dark:hover:text-white transition-colors">View</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">#FC-09921</td>
+                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">100kg Yellow Maize</td>
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">Dec 15, 2025</td>
+                                    <td class="px-6 py-4 text-gray-900 dark:text-white">₦125,000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="status-badge delivered">Delivered</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-agri-600 hover:text-agri-700 dark:text-gold-400 dark:hover:text-white transition-colors">View</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">#FC-08810</td>
+                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Sample: Yam Tubers</td>
+                                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">Nov 02, 2025</td>
+                                    <td class="px-6 py-4 text-gray-900 dark:text-white">₦5,000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="status-badge cancelled">Cancelled</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-agri-600 hover:text-agri-700 dark:text-gold-400 dark:hover:text-white transition-colors">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="orders.js"></script>
+</body>
+</html>

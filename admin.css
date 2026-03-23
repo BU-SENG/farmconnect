@@ -1,0 +1,70 @@
+/* Custom Scrollbar */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Fade Animation */
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glass Effect */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Navigation Buttons */
+.nav-btn {
+    color: #6b7280; /* gray-500 */
+}
+.dark .nav-btn {
+    color: #9ca3af; /* gray-400 */
+}
+.nav-btn:hover {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #111827; /* gray-900 */
+}
+.dark .nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* Active State */
+.nav-btn.active {
+    background-color: #ecfdf5; /* agri-50 */
+    color: #059669; /* agri-600 */
+}
+.dark .nav-btn.active {
+    background-color: rgba(163, 141, 109, 0.1); /* gold-500/10 */
+    color: #c9a962; /* gold-400 */
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status-active { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.status-banned { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }

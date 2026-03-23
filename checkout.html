@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FarmConnect</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#c9a962', 500: '#a38d6d', 600: '#8a7557' },
+                        dark: { 900: '#0a0a0a', 800: '#141414', 700: '#1a1a1a', 600: '#252525', 500: '#333' },
+                        agri: { 500: '#10b981', 600: '#059669' }, /* Green for Light Mode */
+                        success: '#4ecca3',
+                        danger: '#e85d75'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-200 font-sans min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-gray-200 dark:border-dark-500 bg-white/90 dark:bg-dark-900/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
+            <button onclick="window.history.back()" class="flex items-center gap-2 transition-colors text-gray-600 hover:text-agri-600 dark:text-gray-400 dark:hover:text-white">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="text-sm font-medium">Back</span>
+            </button>
+            
+            <h1 class="font-bold text-lg tracking-tight text-agri-600 dark:text-gold-400">CHECKOUT</h1>
+            
+            <button onclick="toggleTheme()" class="p-2 rounded-lg transition-colors text-gray-600 hover:bg-gray-100 hover:text-agri-600 dark:text-gray-400 dark:hover:bg-dark-700 dark:hover:text-gold-400">
+                <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto">
+        <div class="max-w-7xl mx-auto p-4 md:p-8 animate-fade-in">
+            <form id="checkoutForm" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <div class="glass-panel rounded-2xl p-6 md:p-8">
+                        <h2 class="text-lg font-semibold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-agri-500 dark:text-gold-400"></i>
+                            Delivery Details
+                        </h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Full Name</label>
+                                <input type="text" id="custName" required class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Phone Number</label>
+                                <input type="tel" id="custPhone" required class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="0801 234 5678">
+                            </div>
+                            <div class="space-y-1 md:col-span-2">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Delivery Address</label>
+                                <input type="text" id="custAddress" required class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="123 Market Street, Estate">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400">State / Region</label>
+                                <select class="input-field w-full rounded-xl px-4 py-3 text-sm appearance-none bg-white dark:bg-dark-800">
+                                    <option value="lagos">Lagos State</option>
+                                    <option value="ogun">Ogun State</option>
+                                    <option value="oyo">Oyo State</option>
+                                    <option value="abuja">Abuja (FCT)</option>
+                                    <option value="kano">Kano State</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Nearest Landmark</label>
+                                <input type="text" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-6 md:p-8">
+                        <h2 class="text-lg font-semibold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <i data-lucide="credit-card" class="w-5 h-5 text-agri-500 dark:text-gold-400"></i>
+                            Payment Method
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="radio-card cursor-pointer relative">
+                                <input type="radio" name="payment" value="transfer" class="peer sr-only" checked>
+                                <div class="rounded-xl border-2 border-gray-200 dark:border-dark-600 p-4 transition-all hover:border-gray-300 dark:hover:border-dark-500 h-full flex flex-col items-center justify-center text-center gap-2">
+                                    <i data-lucide="building" class="w-6 h-6 text-gray-500 dark:text-gray-400 peer-checked:text-agri-500 dark:peer-checked:text-gold-400"></i>
+                                    <span class="font-medium text-sm text-gray-900 dark:text-white">Bank Transfer</span>
+                                </div>
+                                <div class="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-gray-300 dark:border-dark-500 peer-checked:border-agri-500 dark:peer-checked:border-gold-400 peer-checked:bg-agri-500 dark:peer-checked:bg-gold-400 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white dark:bg-dark-900"></div>
+                                </div>
+                            </label>
+
+                            <label class="radio-card cursor-pointer relative">
+                                <input type="radio" name="payment" value="card" class="peer sr-only">
+                                <div class="rounded-xl border-2 border-gray-200 dark:border-dark-600 p-4 transition-all hover:border-gray-300 dark:hover:border-dark-500 h-full flex flex-col items-center justify-center text-center gap-2">
+                                    <i data-lucide="credit-card" class="w-6 h-6 text-gray-500 dark:text-gray-400"></i>
+                                    <span class="font-medium text-sm text-gray-900 dark:text-white">Pay with Card</span>
+                                </div>
+                                <div class="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-gray-300 dark:border-dark-500 peer-checked:border-agri-500 dark:peer-checked:border-gold-400 peer-checked:bg-agri-500 dark:peer-checked:bg-gold-400 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white dark:bg-dark-900"></div>
+                                </div>
+                            </label>
+
+                            <label class="radio-card cursor-pointer relative">
+                                <input type="radio" name="payment" value="escrow" class="peer sr-only">
+                                <div class="rounded-xl border-2 border-gray-200 dark:border-dark-600 p-4 transition-all hover:border-gray-300 dark:hover:border-dark-500 h-full flex flex-col items-center justify-center text-center gap-2">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-gray-500 dark:text-gray-400"></i>
+                                    <span class="font-medium text-sm text-gray-900 dark:text-white">Escrow / POD</span>
+                                </div>
+                                <div class="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-gray-300 dark:border-dark-500 peer-checked:border-agri-500 dark:peer-checked:border-gold-400 peer-checked:bg-agri-500 dark:peer-checked:bg-gold-400 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white dark:bg-dark-900"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <div class="glass-panel rounded-2xl p-6 sticky top-24">
+                        <h2 class="text-lg font-semibold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <i data-lucide="receipt" class="w-5 h-5 text-gray-400"></i>
+                            Order Summary
+                        </h2>
+
+                        <div id="checkoutProductDetails" class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-dark-600">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center text-2xl bg-gray-100 dark:bg-dark-700 animate-pulse">
+                                </div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 bg-gray-200 dark:bg-dark-700 rounded w-3/4 animate-pulse"></div>
+                                <div class="h-3 bg-gray-200 dark:bg-dark-700 rounded w-1/2 animate-pulse"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Quantity</span>
+                            <div class="flex items-center gap-3 bg-gray-100 dark:bg-dark-800 rounded-lg p-1">
+                                <button type="button" onclick="updateQty(-1)" class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-white dark:hover:bg-dark-600 text-gray-600 dark:text-gray-300 transition-colors">
+                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                </button>
+                                <span id="qtyDisplay" class="font-medium w-4 text-center text-gray-900 dark:text-white">1</span>
+                                <button type="button" onclick="updateQty(1)" class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-white dark:hover:bg-dark-600 text-gray-600 dark:text-gray-300 transition-colors">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mb-6 text-sm">
+                            <div class="flex justify-between text-gray-600 dark:text-gray-400">
+                                <span>Subtotal</span>
+                                <span id="subtotalDisplay" class="font-medium text-gray-900 dark:text-white">₦0</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600 dark:text-gray-400">
+                                <span>Delivery Fee</span>
+                                <span class="font-medium text-gray-900 dark:text-white">₦4,500</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600 dark:text-gray-400">
+                                <span>Service Fee (1.5%)</span>
+                                <span id="feeDisplay" class="font-medium text-gray-900 dark:text-white">₦0</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-200 dark:border-dark-600 pt-4 mb-8 flex justify-between items-end">
+                            <span class="text-gray-600 dark:text-gray-400 font-medium">Total</span>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-500 block mb-0.5">NGN</span>
+                                <span id="totalDisplay" class="text-2xl font-bold text-agri-600 dark:text-gold-400">₦0</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 px-6 font-bold rounded-xl transform hover:-translate-y-0.5 transition-all shadow-lg flex items-center justify-center gap-2
+                            bg-gradient-to-r from-agri-500 to-agri-600 text-white shadow-agri-500/20 hover:from-agri-400 hover:to-agri-500
+                            dark:from-gold-500 dark:to-gold-600 dark:text-dark-900 dark:shadow-gold-500/20 dark:hover:from-gold-400 dark:hover:to-gold-500">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                            Confirm & Pay
+                        </button>
+                        
+                        <p class="text-center text-xs text-gray-500 mt-4 flex items-center justify-center gap-1">
+                            <i data-lucide="shield-check" class="w-3 h-3"></i> Encrypted and Secure
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div id="successModal" class="fixed inset-0 z-50 bg-gray-900/80 dark:bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-dark-800 rounded-2xl p-8 max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+            <div class="w-20 h-20 mx-auto bg-success/20 rounded-full flex items-center justify-center mb-6">
+                <i data-lucide="check-circle" class="w-10 h-10 text-success"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Order Placed!</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-8 text-sm">Your order has been successfully placed. You will be redirected to your dashboard.</p>
+            <div class="w-full bg-gray-200 dark:bg-dark-700 rounded-full h-1.5 mb-2 overflow-hidden">
+                <div class="bg-agri-500 dark:bg-gold-500 h-1.5 rounded-full animate-[progress_2s_ease-in-out_forwards]"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

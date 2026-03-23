@@ -1,0 +1,107 @@
+/* Custom Scrollbar Handling for Light/Dark themes */
+* { scrollbar-width: thin; }
+.dark * { scrollbar-color: #333 #0a0a0a; }
+html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+.dark ::-webkit-scrollbar-track { background: #0a0a0a; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Glass Panels - Translucent background for cards and headers */
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Gradient Border Logic for the Main Profile Avatar Card */
+.gradient-border {
+    position: relative;
+    border-radius: 16px;
+}
+.dark .gradient-border { background: linear-gradient(135deg, #1c1c1c 0%, #1a1a1a 100%); }
+html:not(.dark) .gradient-border { background: white; border: 1px solid #e5e7eb; }
+
+/* Mask technique to create the gradient border effect */
+.gradient-border::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 16px; padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+}
+/* Gold Border in Dark Mode */
+.dark .gradient-border::before {
+    background: linear-gradient(135deg, rgba(163, 141, 109, 0.5), rgba(163, 141, 109, 0.1));
+}
+/* Green Border in Light Mode */
+html:not(.dark) .gradient-border::before {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(16, 185, 129, 0.1));
+}
+
+/* Order/Listing Cards Hover Effects */
+.order-card { transition: all 0.3s ease; }
+.order-card:hover { transform: translateY(-2px); }
+
+.dark .order-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(163, 141, 109, 0.3);
+}
+html:not(.dark) .order-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Sidebar Nav Item Indicator (Vertical colored line) */
+.nav-item { position: relative; transition: all 0.3s ease; }
+.nav-item::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.3s ease;
+}
+.dark .nav-item::before { background: #a38d6d; }
+html:not(.dark) .nav-item::before { background: #059669; }
+
+.nav-item:hover::before, .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* Status Badges */
+.status-processing { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+.status-completed { background: rgba(78, 204, 163, 0.15); color: #4ecca3; border: 1px solid rgba(78, 204, 163, 0.3); }
+.status-shipped { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+/* Fade Animation on Page Load */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Inputs Styling for 'Edit Profile' mode */
+.edit-input {
+    transition: all 0.3s;
+}
+.dark .edit-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(163, 141, 109, 0.3);
+    color: #fff;
+}
+html:not(.dark) .edit-input {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}
+
+.edit-input:focus { outline: none; }
+.dark .edit-input:focus { border-color: #a38d6d; box-shadow: 0 0 0 3px rgba(163, 141, 109, 0.1); }
+html:not(.dark) .edit-input:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
