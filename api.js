@@ -9,8 +9,8 @@
 //   3. Done. Every page inherits real data automatically.
 // ============================================================
 
-const BASE_URL = 'https://your-app.onrender.com/api'; // <-- Change this when backend is ready
-const USE_MOCK = true; // <-- Flip to false when backend is ready
+const BASE_URL = 'https://farmconnect-backend-qv19.onrender.com/api';
+const USE_MOCK = false;
 
 // ============================================================
 // SECTION 1: TOKEN / AUTH HELPERS
